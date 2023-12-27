@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+    </style>
+
+    <script>
+
+        const dateFormMaker = function () {
+            const inputYear = document.querySelector("#target-year-input").value;
+            const inputMonth = document.querySelector("#target-month-input").value;
+            const inputDate = document.querySelector("#target-date-input").value;
+
+            // const dateFormat = inputYear + '-' + inputMonth + '-' + inputDate
+            const dateFormat = `${inputYear}-${inputMonth}-${inputDate}`
+
+            return dateFormat;
+        }
+
+        const counterMaker = function () {
+            const targetDateInput = dateFormMaker();
+                                          
+            const nowDate = new Date();
+            const targetDate = new Date(targetDateInput).setHours(0,0,0,0);
+            const remaining = (targetDate - nowDate) / 1000;
+
+            if (remaining <= 0) {
+                container.style.display = 'none';
+                messageContainer.innerHTML = '타이머가 종료';
+                messageContainer.style.display = 'flex';
+                setClearInterval();
+            } else if (isNaN(remaining)) {
+                container.style.display = 'none';
+                messageContainer.innerHTML = '타이머가 종료';
+                messageContainer.style.display = 'flex';
+            }
+            
+            const remainingObj = {
+                remainingDate: Math.floor(remaining / 3600 / 24),
+                remainingHours: Math.floor(remaining / 3600 % 24),
+                remainingMin: Math.floor(remaining / 60) % 60,
+                remainingSec: Math.floor(remaining) % 60
+            }
+
+            const documentArr = ['days', 'hours', 'min', 'sec'];
+            const timeKeys = Object.keys(remainingObj);
+
+            let i = 0;
+            for (let tag of documentArr) {
+                
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <input type="text" id="target-year-input" class="target-input">
+    <input type="text" id="target-month-input" class="target-input">
+    <input type="text" id="target-date-input" class="target-input">
+    <button onclick="counterMaker()">BTN</button>
+</body>
+
+</html>
